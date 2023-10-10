@@ -15,23 +15,30 @@ namespace CityInfo
 
             var app = builder.Build();
 
-            //// Configure the HTTP request pipeline.
-            //if (app.Environment.IsDevelopment())
-            //{
-            //    app.UseSwagger();
-            //    app.UseSwaggerUI();
-            //}
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
-            //app.UseAuthorization();
+            app.UseRouting();
+            app.UseAuthorization();
 
 
             //app.MapControllers();
 
-            app.Run(async (context) =>
+            app.UseEndpoints(endpoints =>
             {
-                await context.Response.WriteAsync("hello mother fuck");
-
+                endpoints.MapControllers();
             });
+
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("hello mother fuck");
+
+            //});
+            app.Run();
         }
     }
 }
