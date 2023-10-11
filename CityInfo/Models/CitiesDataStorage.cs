@@ -13,6 +13,22 @@
                 Id = 1,
                 Name = "Rome",
                 Description = "The capital of Italy",
+                PointsOfInternet = new List<NumberOfPointsOfInternet>()
+                {
+                    new NumberOfPointsOfInternet()
+                    {
+                        Id = 1,
+                        Name="Colosseum",
+                        Description = "ROMANI",
+                    },
+                    new NumberOfPointsOfInternet()
+                    {
+                        Id = 2,
+                        Name="Circus Maximun",
+                        Description = "TRa",
+                    }
+
+                }
                 },
 
             new CityDto()
@@ -20,6 +36,23 @@
                 Id = 1,
                 Name = "Paris",
                 Description = "The capital of France",
+
+                 PointsOfInternet = new List<NumberOfPointsOfInternet>()
+                {
+                    new NumberOfPointsOfInternet()
+                    {
+                        Id = 1,
+                        Name="Tour Eiffel",
+                        Description = "pezzo di latta",
+                    },
+                    new NumberOfPointsOfInternet()
+                    {
+                        Id = 2,
+                        Name="arc the triomphe ",
+                        Description = "Napoleone",
+                    }
+
+                }
             },
 
             new CityDto()
@@ -27,7 +60,24 @@
                 Id = 1,
                 Name = "Berlin",
                 Description = "The capital of Germany",
+                PointsOfInternet = new List<NumberOfPointsOfInternet>()
+                {
+                    new NumberOfPointsOfInternet()
+                    {
+                        Id = 1,
+                        Name="Brandenburg Gate",
+                        Description = "porta",
+                    },
+                    new NumberOfPointsOfInternet()
+                    {
+                        Id = 2,
+                        Name="Neuschwanstein Castle ",
+                        Description = "castello",
+                    }
+
+                }
             },
+
         };
 
 }
