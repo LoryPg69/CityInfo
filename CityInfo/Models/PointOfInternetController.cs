@@ -75,6 +75,52 @@ namespace CityInfo.Models
                 finalPointOfInternet);
             
         }
+        [HttpPut ("{pointId:int}")]
+        public ActionResult UpdatePointOfInternet(int cityId, int pointId, [FromBody] PointOfInternetDTO pointOfInternet)
+        {
+            var city = CitiesDataStorage.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            if (city == null)
+            {
+                return NotFound();
 
-    }
+            }
+            var point = city.PointsOfInternet.FirstOrDefault(p => p.Id == pointId);
+
+            if (point == null)
+            {
+                return NotFound();
+
+            }
+
+
+            point.Name = pointOfInternet.Name;
+            point.Description = pointOfInternet.Description;
+
+            return NoContent();
+        }
+
+        [HttpDelete("{pointId:int}")]
+
+        public ActionResult DeletePointOfInternet(int cityId, int pointId)
+        {
+            var city = CitiesDataStorage.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            if (city == null)
+            {
+                return NotFound();
+
+            }
+            var point = city.PointsOfInternet.FirstOrDefault(p => p.Id == pointId);
+
+            if (point == null)
+            {
+                return NotFound();
+
+            }
+
+            city.PointsOfInternet.Remove(point);
+            return NoContent();
+        }
+
+
+        }
 }
