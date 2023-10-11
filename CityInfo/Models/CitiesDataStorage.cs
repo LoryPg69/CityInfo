@@ -13,15 +13,15 @@
                 Id = 1,
                 Name = "Rome",
                 Description = "The capital of Italy",
-                PointsOfInternet = new List<NumberOfPointsOfInternet>()
+                PointsOfInternet = new List<NumberOfPointsOfInterest>()
                 {
-                    new NumberOfPointsOfInternet()
+                    new NumberOfPointsOfInterest()
                     {
                         Id = 1,
                         Name="Colosseum",
                         Description = "ROMANI",
                     },
-                    new NumberOfPointsOfInternet()
+                    new NumberOfPointsOfInterest()
                     {
                         Id = 2,
                         Name="Circus Maximun",
@@ -33,19 +33,19 @@
 
             new CityDto()
             {
-                Id = 1,
+                Id = 2,
                 Name = "Paris",
                 Description = "The capital of France",
 
-                 PointsOfInternet = new List<NumberOfPointsOfInternet>()
+                 PointsOfInternet = new List<NumberOfPointsOfInterest>()
                 {
-                    new NumberOfPointsOfInternet()
+                    new NumberOfPointsOfInterest()
                     {
                         Id = 1,
                         Name="Tour Eiffel",
                         Description = "pezzo di latta",
                     },
-                    new NumberOfPointsOfInternet()
+                    new NumberOfPointsOfInterest()
                     {
                         Id = 2,
                         Name="arc the triomphe ",
@@ -57,18 +57,18 @@
 
             new CityDto()
             {
-                Id = 1,
+                Id = 3,
                 Name = "Berlin",
                 Description = "The capital of Germany",
-                PointsOfInternet = new List<NumberOfPointsOfInternet>()
+                PointsOfInternet = new List<NumberOfPointsOfInterest>()
                 {
-                    new NumberOfPointsOfInternet()
+                    new NumberOfPointsOfInterest()
                     {
                         Id = 1,
                         Name="Brandenburg Gate",
                         Description = "porta",
                     },
-                    new NumberOfPointsOfInternet()
+                    new NumberOfPointsOfInterest()
                     {
                         Id = 2,
                         Name="Neuschwanstein Castle ",

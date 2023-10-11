@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 
-namespace CityInfo.Controllers
+namespace CityInfo.Controller
 {
     [Route("api/files")]
     [ApiController]
@@ -12,7 +12,7 @@ namespace CityInfo.Controllers
         public FilesController(FileExtensionContentTypeProvider fileExtensionContentTypeProvider)
         {
             _fileExtensionContentTypeProvider = fileExtensionContentTypeProvider
-                ?? throw new System.ArgumentNullException(
+                ?? throw new ArgumentNullException(
                     nameof(fileExtensionContentTypeProvider));
         }
 

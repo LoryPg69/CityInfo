@@ -15,7 +15,7 @@
                 
                     }
 
-        public ICollection<NumberOfPointsOfInternet> PointsOfInternet { get; set; } = new List<NumberOfPointsOfInternet>();
+        public ICollection<NumberOfPointsOfInterest> PointsOfInternet { get; set; } = new List<NumberOfPointsOfInterest>();
 
         }
     
