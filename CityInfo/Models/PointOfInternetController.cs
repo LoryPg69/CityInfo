@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CityInfo.NewFolder;
+using CityInfo.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CityInfo.Models
 { 
@@ -7,18 +9,45 @@ namespace CityInfo.Models
 
     public class PointOfInternetController : ControllerBase
     {
+
+        private readonly ICityRepository _cityRepo;     
+
+        private readonly ILogger<PointOfInternetController> _logger;
+
+        private readonly IMailService _mailService;
+
+        public PointOfInternetController(ILogger<PointOfInternetController> logger, ICityRepository cityRepo, IMailService s)
+        {
+
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _cityRepo = cityRepo;
+            _mailService = s;
+            _mailService.Send("jdjdj", "ciao");
+        }
+
         [HttpGet]
 
         public ActionResult <IEnumerable<PointOfInternetController>> GetPointsOfInternet(int cityId)
         {
-            var city = CitiesDataStorage.Current.Cities.FirstOrDefault( c => c.Id == cityId);
-
-            if (city == null)
+            try
             {
-                return NotFound();
+                var city = _cityRepo.GetCities().FirstOrDefault(c => c.Id == cityId);
 
+                if (city == null)
+                {
+
+                    _logger.LogInformation("city not found");
+                    return NotFound();
+
+                }
+                return Ok(city.PointsOfInternet);
             }
-            return Ok(city.PointsOfInternet);
+            catch (Exception ex)
+            {
+
+                _logger.LogCritical($"{ex.Message} \n {ex.StackTrace}");
+                return StatusCode(500, "something critical happens");
+            }
         }
 
         [HttpGet("{pointId:int}", Name = "getPointOfInternet")]
@@ -26,7 +55,7 @@ namespace CityInfo.Models
 
         public ActionResult<IEnumerable<PointOfInternetController>> GetPointOfInternet(int cityId, int pointId)
         {
-            var city = CitiesDataStorage.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _cityRepo.GetCities().FirstOrDefault(c => c.Id == cityId);
             if (city == null)
             {
                 return NotFound();
@@ -46,7 +75,7 @@ namespace CityInfo.Models
         public IActionResult CreatePointOfInternet(int cityId, [FromBody] PointOfInternetDTO poi)        
         {
 
-            var city = CitiesDataStorage.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _cityRepo.GetCities().FirstOrDefault(c => c.Id == cityId);
 
             if (city == null)
             {
@@ -54,7 +83,7 @@ namespace CityInfo.Models
 
             }
 
-            var maxPointOfInternetId = CitiesDataStorage.Current.Cities.SelectMany(c => c.PointsOfInternet).Max(p => p.Id);
+            var maxPointOfInternetId = _cityRepo.GetCities().SelectMany(c => c.PointsOfInternet).Max(p => p.Id);
 
             var finalPointOfInternet = new NumberOfPointsOfInterest()
             {
@@ -78,7 +107,7 @@ namespace CityInfo.Models
         [HttpPut ("{pointId:int}")]
         public ActionResult UpdatePointOfInternet(int cityId, int pointId, [FromBody] PointOfInternetDTO pointOfInternet)
         {
-            var city = CitiesDataStorage.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _cityRepo.GetCities().FirstOrDefault(c => c.Id == cityId);
             if (city == null)
             {
                 return NotFound();
@@ -103,7 +132,7 @@ namespace CityInfo.Models
 
         public ActionResult DeletePointOfInternet(int cityId, int pointId)
         {
-            var city = CitiesDataStorage.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            var city = _cityRepo.GetCities().FirstOrDefault(c => c.Id == cityId);
             if (city == null)
             {
                 return NotFound();
