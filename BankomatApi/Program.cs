@@ -1,0 +1,41 @@
+using BankomatApi.Model;
+using BankomatApi.Services.Banche;
+using BankomatApi.Services.User;
+using BankomatApi.Services.Utente;
+
+namespace BankomatApi
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
+
+            // Add services to the container.
+
+            builder.Services.AddControllers();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            builder.Services.AddSingleton<IUtentiService, LocalUtentiServices>();
+            builder.Services.AddSingleton<IBancaService, LocalBancaService>();
+
+            var app = builder.Build();
+
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
+            app.UseAuthorization();
+
+            app.MapControllers();
+
+            app.Run();
+
+        }
+    }
+}

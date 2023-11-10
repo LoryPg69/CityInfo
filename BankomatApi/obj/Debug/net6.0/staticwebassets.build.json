@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "JCPnzg4CdojmoB+Z2jv6sD3iMUm6dawo6qsB4YmbtFE=",
+  "Source": "BankomatApi",
+  "BasePath": "_content/BankomatApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
